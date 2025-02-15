@@ -1,6 +1,7 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from app.forms import LoginForm, RegisterForm
 from app.helpers import get_student_details
+from app.models import User
 auth_bp = Blueprint('auth', __name__)
 
 @auth_bp.route('/login', methods=['POST', 'GET'])
@@ -31,6 +32,10 @@ def register():
             flash('Invalid roll number', 'danger')
             return redirect(url_for('routes.auth.register'))
         # Verify if the user is already registered
+        user = User.query.filter_by(roll_no=roll_no).first()
+        if user:
+            flash('User already registered', 'danger')
+            return redirect(url_for('routes.auth.register'))
         # If not, send an email to the user with a link to verify their email
         return redirect(url_for('routes.login.index'))
     return render_template('register.html', form=form)

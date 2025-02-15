@@ -8,11 +8,11 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     roll_no = db.Column(db.String(6), unique=True, nullable=False)
     password = db.Column(db.String(120), nullable=False)
-    role = db.Column(db.String(20), nullable=False)
+    role = db.Column(db.String(20), nullable=False, default='gbm')
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
     __table_args__ = (
-        CheckConstraint('role IN ("gbm", "contributor", "admin")', name='role_check')
+        CheckConstraint('role IN ("gbm", "contributor", "admin")', name='role_check'),
     )
 
     @hybrid_property
