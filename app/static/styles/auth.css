@@ -125,19 +125,22 @@
     margin-bottom: 1rem;
 }
 
-.register-link{
+
+.login-link{
     text-align: left;
     margin-top: 1rem;
     color: #cccccc; /* Slightly muted text */
   }
-  
-  .register-link a {
+  .login-link a {
     color: #6366f1; /* Accent color */
     text-decoration: none;
   }
   
   .register-link a:hover {
     text-decoration: underline;
+}
+  .login-link a:hover {
+  text-decoration: underline;
 }
 
 .register-button{
